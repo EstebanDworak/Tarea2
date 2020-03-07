@@ -1,13 +1,15 @@
 import 'package:hive/hive.dart';
 
-part 'todo_remainder.g.dart';
+// part 'person.model.g.dart';
 
-@HiveType(typeId: 0)
+
+
+@HiveType()
 class TodoRemainder{
   @HiveField(0)
   String hour;
   @HiveField(1)
   String todoDescription;
-  TodoRemainder(this.todoDescription, this.hour);
-}
 
+  TodoRemainder(this.hour, this.todoDescription);
+}

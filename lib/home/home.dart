@@ -180,8 +180,8 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.of(context).pop(
                   TodoRemainder(
-                    todoDescription: "${_todoTextController.text}",
-                    hour: "${_horario.format(context)}",
+                    "${_todoTextController.text}",
+                    "${_horario.format(context)}",
                   ),
                 );
                 _todoTextController.clear();
