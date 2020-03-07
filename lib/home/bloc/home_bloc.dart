@@ -87,7 +87,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 //         new TodoRemainder(hour: "adsf", todoDescription: "asdf");
         var person = TodoRemainder(todoReminder.todoDescription, todoReminder.hour);
 _remindersBox.add(person);
-print(_remindersBox.getAt(2).hour);
+// print(_remindersBox.getAt(2).hour);
+Map<dynamic, dynamic> raw = _remindersBox.toMap();
+List list = raw.values.toList();
+print(list);
+
     // TODO:add item here
   }
 

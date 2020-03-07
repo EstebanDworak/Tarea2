@@ -13,8 +13,8 @@ void main() async {
   // inicializar hive
   Hive.init(_local_storage.path);
   // abrir una caja
-  await Hive.openBox("reminders");
 Hive.registerAdapter(TodoRemainderAdapter());
+  await Hive.openBox("reminders");
   runApp(MyApp());
 }
 
