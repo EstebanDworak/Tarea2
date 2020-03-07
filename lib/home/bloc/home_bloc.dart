@@ -14,7 +14,6 @@ part 'home_state.dart';
 
 @HiveType(typeId: 0)
 class Person extends HiveObject {
-
   @HiveField(0)
   String name;
 
@@ -60,43 +59,31 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   List<TodoRemainder> _loadReminders() {
-    // ver si existen datos TodoRemainder en la box y sacarlos como Lista (no es necesario hacer get ni put)
-    // debe haber un adapter para que la BD pueda detectar el objeto
-    // List<TodoRemainder> todoRemainders = new List<TodoRemainder>();
-    // TodoRemainder todo =
-    //     new TodoRemainder(hour: "adsf", todoDescription: "asdf");
-    // todoRemainders.add(todo);
-    // return todoRemainders;
+
+    Map<dynamic, dynamic> raw = _remindersBox.toMap();
+    List list = raw.values.toList();
+    List<TodoRemainder> todos = new List<TodoRemainder>();
+
+    for (var i = 0; i < list.length; i++) {
+      todos.add(list[i]);
+    }
+
+    return todos;
 
     throw EmptyDatabase();
   }
 
   void _saveTodoReminder(TodoRemainder todoReminder) {
-    // print(todoReminder.hour);
-    // TodoRemainder todo =
-    //     new TodoRemainder(hour: "adsf", todoDescription: "asdf");
-    // _remindersBox.add(todo);
-    // print(_remindersBox.getAt(0)); // Dave - 22
-//     var person = TodoRemainder()
-//   ..name = 'Dave'
-//   ..age = 22;
-// _remindersBox.add(person);
 
-// print(_remindersBox.getAt(0)); // Dave - 22
-// TodoRemainder todo =
-//         new TodoRemainder(hour: "adsf", todoDescription: "asdf");
-        var person = TodoRemainder(todoReminder.todoDescription, todoReminder.hour);
-_remindersBox.add(person);
-// print(_remindersBox.getAt(2).hour);
-Map<dynamic, dynamic> raw = _remindersBox.toMap();
-List list = raw.values.toList();
-print(list);
+    var person = TodoRemainder(todoReminder.todoDescription, todoReminder.hour);
+    _remindersBox.add(person);
 
-    // TODO:add item here
   }
 
   void _removeTodoReminder(int removedAtIndex) {
     // TODO:delete item here
+    _remindersBox.deleteAt(removedAtIndex);
+
   }
 }
 
